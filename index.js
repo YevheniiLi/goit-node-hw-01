@@ -21,6 +21,7 @@ async function invokeAction({ action, id, name, email, phone } = argv) {
 
     case "add":
       await db.addContact(name, email, phone);
+      console.log(`Contact ${name} has been added to your list`);
       break;
 
     case "get":
@@ -30,6 +31,7 @@ async function invokeAction({ action, id, name, email, phone } = argv) {
 
     case "remove":
       await db.removeContact(id);
+      console.log(`Сontact ${id} has been removed from your list`);
       break;
 
     default:
