@@ -21,19 +21,19 @@ async function addContact(name, email, phone) {
 
 async function removeContact(contactId) {
   const contacts = await listContacts();
-  const foundContact = contacts.find(item => item.id === contactId);
-  if (!foundContact) {
+  const findContact = contacts.find(item => item.id === contactId);
+  if (!findContact) {
     return null;
   }
   const removedItems = contacts.filter(item => item.id !== contactId);
   await fs.writeFile(contactsPath, JSON.stringify(removedItems));
-  return foundContact;
+  return findContact;
 }
 
 async function getContactById(contactId) {
   const contacts = await listContacts();
-  const foundContact = contacts.find(item => item.id === contactId);
-  return foundContact;
+  const findContact = contacts.find(item => item.id === contactId);
+  return findContact;
 }
 
 module.exports = {
