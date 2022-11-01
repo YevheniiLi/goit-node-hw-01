@@ -8,7 +8,7 @@ async function listContacts() {
   const response = await fs.readFile(contactsPath);
   const contacts = JSON.parse(response);
   return contacts;
-}
+};
 
 async function addContact(name, email, phone) {
   const id = nanoid();
@@ -17,24 +17,24 @@ async function addContact(name, email, phone) {
   contacts.push(newContact);
   await fs.writeFile(contactsPath, JSON.stringify(contacts));
   return newContact;
-}
+};
 
 async function removeContact(contactId) {
   const contacts = await listContacts();
-  const findContact = contacts.find(item => item.id === contactId);
-  if (!findContact) {
+  const contactForDelete = contacts.find(contact => contact.id === contactId);
+  if (!contactForDelete) {
     return null;
-  }
-  const removedItems = contacts.filter(item => item.id !== contactId);
-  await fs.writeFile(contactsPath, JSON.stringify(removedItems));
-  return findContact;
-}
+  };
+  const removedContact = contacts.filter(contact => contact.id !== contactId);
+  await fs.writeFile(contactsPath, JSON.stringify(removedContact));
+  return contactForDelete;
+};
 
 async function getContactById(contactId) {
   const contacts = await listContacts();
-  const findContact = contacts.find(item => item.id === contactId);
-  return findContact;
-}
+  const foundContact = contacts.find(contact => contact.id === contactId);
+  return foundContact;
+};
 
 module.exports = {
   listContacts,
